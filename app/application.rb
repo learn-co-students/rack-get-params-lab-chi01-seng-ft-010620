@@ -17,9 +17,9 @@ class Application
 
     elsif req.path.match(/cart/)
       if @@cart.length == 0
-        resp.write "Your cart is currently empty."
+        resp.write "Your cart is empty."
       else @@cart.each do |item|
-        resp.write "Your cart currently contains #{item}.\n"
+        resp.write "#{item}\n"
         end
       end
     elsif req.path.match(/add/)
@@ -29,15 +29,15 @@ class Application
       resp.write "Path Not Found"
     end
 
-    response.finish
+    resp.finish
   end
 
     def handle_add(item_to_add)
       if @@items.include?(item_to_add)
         @@cart << item_to_add
-        return "#{item_to_add} has been added to your cart.\n"
+        return "added #{item_to_add}\n"
       else
-        return "#{item_to_add} is not included in our inventory. Please see the items page for a comprehensive list of items."
+        return "#{item_to_add} is not included in our inventory. We don't have that item. Please see the items page for a comprehensive list of items."
       end
     end
 
